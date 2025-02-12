@@ -19,7 +19,6 @@ A fully functional blog application built with **Django** and **Bootstrap**. Thi
 ### 🎨 UI/UX Enhancements
 - **Bootstrap 5** for a fully responsive and modern interface.
 - **Pagination**: Posts are displayed in a paginated format to improve user experience.
-- **Tooltips**: If a post excerpt exceeds 10 words, a tooltip displays the full content.
 
 ### 📢 Toast Notifications
 The application uses **toast messages** for improved user feedback:
