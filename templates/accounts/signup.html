@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card p-4 shadow-lg" style="width: 400px;">
+        <h2 class="text-center mb-3">Sign Up</h2>
+
+        <!-- Show Non-Field Errors (e.g., Password Mismatch) -->
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                    <p class="mb-0">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Username Field with Error Display -->
+            <div class="mb-3">
+                <label for="id_username" class="form-label">Username</label>
+                <input type="text" name="username" id="id_username" class="form-control" placeholder="Choose a username" required>
+                {% if form.username.errors %}
+                    <div class="text-danger">
+                        {% for error in form.username.errors %}
+                            <small>{{ error }}</small><br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Email Field with Error Display -->
+            <div class="mb-3">
+                <label for="id_email" class="form-label">Email</label>
+                <input type="email" name="email" id="id_email" class="form-control" placeholder="Enter your email" required>
+                {% if form.email.errors %}
+                    <div class="text-danger">
+                        {% for error in form.email.errors %}
+                            <small>{{ error }}</small><br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Password1 Field with Error Display -->
+            <div class="mb-3">
+                <label for="id_password1" class="form-label">Password</label>
+                <input type="password" name="password1" id="id_password1" class="form-control" placeholder="Enter password" required>
+                {% if form.password1.errors %}
+                    <div class="text-danger">
+                        {% for error in form.password1.errors %}
+                            <small>{{ error }}</small><br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Password2 Field with Error Display -->
+            <div class="mb-3">
+                <label for="id_password2" class="form-label">Confirm Password</label>
+                <input type="password" name="password2" id="id_password2" class="form-control" placeholder="Confirm password" required>
+                {% if form.password2.errors %}
+                    <div class="text-danger">
+                        {% for error in form.password2.errors %}
+                            <small>{{ error }}</small><br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-success w-100" >Sign Up</button>
+        </form>
+
+        <p class="text-center mt-3">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
+</div>
+{% endblock %}
