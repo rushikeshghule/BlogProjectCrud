@@ -38,8 +38,8 @@ git clone https://github.com/rushikeshghule/BlogProjectCrud.git
 
 ### 2️⃣ Create and Activate Virtual Environment
 ```sh
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+python3 -m venv blog_env
+blog_env\Scripts\activate
 ```
 
 ### 3️⃣ Install Dependencies
