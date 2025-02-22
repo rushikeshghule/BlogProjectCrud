@@ -19,7 +19,6 @@ A fully functional blog application built with **Django** and **Bootstrap**. Thi
 ### 🎨 UI/UX Enhancements
 - **Bootstrap 5** for a fully responsive and modern interface.
 - **Pagination**: Posts are displayed in a paginated format to improve user experience.
-- **Tooltips**: If a post excerpt exceeds 10 words, a tooltip displays the full content.
 
 ### 📢 Toast Notifications
 The application uses **toast messages** for improved user feedback:
@@ -38,8 +37,9 @@ git clone https://github.com/rushikeshghule/BlogProjectCrud.git
 
 ### 2️⃣ Create and Activate Virtual Environment
 ```sh
-python3 -m venv blog_env
+python -m venv blog_env
 blog_env\Scripts\activate
+cd BlogProjectCrud
 ```
 
 ### 3️⃣ Install Dependencies
