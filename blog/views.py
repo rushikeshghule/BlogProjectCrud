@@ -4,7 +4,7 @@ from .forms import BlogPostForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib import messages
-
+from datetime import datetime
 @login_required
 def home_view(request):
     """
@@ -25,7 +25,7 @@ def home_view(request):
     posts = paginator.get_page(page)
 
     return render(request, 'blog/home.html', {'posts': posts})
-
+@login_required
 def post_detail_view(request, pk):
     """
     Display the details of a specific blog post.
@@ -63,6 +63,7 @@ def post_create_view(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
+            post.created_at=datetime.now()
             post.save()
             messages.success(request, "Blog post saved successfully!")
             return redirect("home")
@@ -103,9 +104,6 @@ def post_delete_view(request, pk):
     """
     Handle blog post deletion.
 
-    Allows the post's author to delete their blog post. If the user is the author,
-    deletes the post and redirects to home with a success message.
-
     Args:
         request (HttpRequest): The incoming HTTP request.
         pk (int): The primary key of the blog post to delete.
@@ -114,7 +112,11 @@ def post_delete_view(request, pk):
         HttpResponseRedirect: Redirects to home after deletion.
     """
     post = get_object_or_404(BlogPost, pk=pk)
-    if request.user == post.author:
-        post.delete()
-        messages.success(request, "Blog post deleted successfully!")
-    return redirect("home")
+
+    if request.method == "POST":
+        if request.user == post.author:
+            post.delete()
+            messages.success(request, "Blog post deleted successfully!")
+        return redirect("home")
+
+    return render(request, "blog/post_delete.html", {"post": post})

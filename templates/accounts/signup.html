@@ -76,4 +76,57 @@
         <p class="text-center mt-3">Already have an account? <a href="{% url 'login' %}">Login</a></p>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $("#signupForm").validate({
+        rules: {
+            username: {
+                required: true,
+                minlength: 3
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            password1: {
+                required: true,
+                minlength: 6
+            },
+            password2: {
+                required: true,
+                equalTo: "#id_password1"
+            }
+        },
+        messages: {
+            username: {
+                required: "Please enter a username",
+                minlength: "Username must be at least 3 characters"
+            },
+            email: {
+                required: "Please enter your email",
+                email: "Enter a valid email address"
+            },
+            password1: {
+                required: "Please enter a password",
+                minlength: "Password must be at least 6 characters"
+            },
+            password2: {
+                required: "Please confirm your password",
+                equalTo: "Passwords do not match"
+            }
+        },
+        errorElement: "small",
+        errorClass: "text-danger",
+        highlight: function(element) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function(element) {
+            $(element).removeClass("is-invalid");
+        }
+    });
+});
+</script>
 {% endblock %}

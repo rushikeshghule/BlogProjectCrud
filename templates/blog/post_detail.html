@@ -5,7 +5,7 @@
     <h1 class="text-center mb-4">Post Details</h1>
     <div class="card p-4 shadow-lg mt-4">
         <h1 class="post-title">{{ post.title }}</h1>
-        <p class="post-meta">By <strong>{{ post.author }}</strong> | {{ post.created_at|date:"F d, Y" }}</p>
+        <p class="post-meta">By <strong>{{ post.author }}</strong> | {{ post.created_at }}</p>
         <hr>
         <p class="post-body">{{ post.body }}</p>
 
